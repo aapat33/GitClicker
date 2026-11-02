@@ -82,6 +82,7 @@ body.cshake main{animation:shk2 .3s}
 .trav{margin-top:10px;max-width:360px;margin-inline:auto;border:2px solid #f2c230}
 @media(prefers-reduced-motion:reduce){.bit,.ring{display:none}#thing.jig,body.cshake main{animation:none}}
 #stats dl{display:grid;grid-template-columns:1fr auto;gap:4px 12px;margin:0 0 10px;font-size:.9rem}#stats dt{color:var(--mute)}#stats dd{margin:0;font-weight:700;text-align:right;font-variant-numeric:tabular-nums}
+[hidden]{display:none!important}
 </style></head><body>
 <canvas id="bg" aria-hidden="true"></canvas>
 <main>
@@ -165,7 +166,7 @@ let armA=0,armR=0,armT=0;
 mk($('asc'),'ascb','ascb','Ascend','',()=>{if(S.run<need())return;
  if(Date.now()-armA>4000){armA=Date.now();toast('Click Ascend again to confirm. Money, evolution and upgrades reset.');return}
  const gain=1+Math.floor(S.asc/4);S.ap+=gain;S.money=seed();S.run=0;S.stage=Math.min(50,2*L('keep'));S.own={};S.asc++;drawn=-1;toast('Ascended! +'+gain+' ascension '+(gain===1?'point':'points'));render()});
-$('trav').onclick=()=>{if(Date.now()-armT>4000){armT=Date.now();toast('Click again to travel to World '+(S.world+1));return}
+$('trav').onclick=()=>{if(S.world>=3||S.stage<50)return;if(Date.now()-armT>4000){armT=Date.now();toast('Click again to travel to World '+(S.world+1));return}
  S.world++;S.money=seed();S.run=0;S.stage=Math.min(50,2*L('keep'));S.own={};drawn=-1;toast('Welcome to World '+S.world+'!');render()};
 let drawn=-1;
 const AU=[
